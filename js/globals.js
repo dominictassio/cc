@@ -27,7 +27,7 @@ Global.config = {
           // p  q  r  s  t  u  v  w  x  y  z  {  |  }  ~  `
             [5, 5, 5, 5, 3, 5, 5, 5, 5, 5, 5, 4, 1, 4, 6, 0]
         ],
-        "chars":   [' !"#$%&\'()*+,_./',
+        "chars":   [' !"#$%&\'()*+,-./',
                     '0123456789:;<=>?',
                     '@ABCDEFGHIJKLMNO',
                     'PQRSTUVWXYZ[\\]^_',
@@ -39,6 +39,16 @@ Global.config = {
                 for (var i = 0; i < line.length; i++) {
                     if (line[i] == ch) {
                         return this.widths[key][i];
+                    }
+                }
+            }
+        },
+        "getCharCoords": function(ch) {
+            for (var key in this.chars) {
+                var line = this.chars[key];
+                for (var i = 0; i < line.length; i++) {
+                    if (line[i] == ch) {
+                        return [key, i];
                     }
                 }
             }
@@ -63,3 +73,52 @@ Global.config = {
         "f": "rgb(240, 240, 240)"  // White
     }
 };
+
+Global.colors = {
+    "BLACK": '0',
+    "RED": '1',
+    "GREEN": '2',
+    "BROWN": '3',
+    "BLUE": '4',
+    "PURPLE": '5',
+    "CYAN": '6',
+    "LIGHT_GRAY": '7',
+    "GRAY": '8',
+    "PINK": '9',
+    "LIME": 'a',
+    "YELLOW": 'b',
+    "LIGHT_BLUE": 'c',
+    "MAGENTA": 'd',
+    "ORANGE": 'e',
+    "WHITE": 'f',
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

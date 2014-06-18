@@ -3,7 +3,7 @@ var gulp   = require('gulp'),
     gutil  = require('gulp-util'),
     watch  = require('gulp-watch');
 
-gulp.task('ruby', function() {
+gulp.task('sass', function() {
     return gulp.src('./sass/*.sass')
         .pipe(sass({sourcemap: true,
                     style: 'compact',
