@@ -1,9 +1,3 @@
-
-/*
-'event', {'key', key}
-'event', {'char', ''}
- */
-
 Global = {};
 
 Global.config = {
@@ -181,33 +175,3 @@ Global.keys = {
     MINUS: 12,
     PERIOD: 52
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
