@@ -1,5 +1,5 @@
 
-Crafty.load("img/font.png", function() {
+Crafty.load(["img/font.png", "img/cursor.png"], function() {
     Crafty.sprite(8, "img/font.png", function() {
         var sprites = {};
         for (var i = 0; i < 16; i++) {
@@ -12,7 +12,13 @@ Crafty.load("img/font.png", function() {
         
         return sprites;
     }());
+
+    Crafty.sprite(8, "img/cursor.png", {
+        cursor: [0, 0]
+    });
 });
+
+Crafty.load
 
 Crafty.c('Grid', {
     init: function() {
@@ -63,13 +69,13 @@ for (var i = 0; i < 16; i++) {
     }
 }
 
-/*Crafty.c('Char', {
+Crafty.c('Cursor', {
     init: function() {
-        this.requires('2D, Canvas, Grid, Color, spr_f_~');
-        this.crop(-((Global.config.char.width - 1 - Global.config.char.getWidth('~')) / 2), 0, 6, 8);
-        //this.color('rgb(178, 102, 229)');
+        this.requires('2D, Canvas, Grid, SpriteAnimation, cursor');
+        this.crop(0, 0, 6, 8);
         this.w = Global.config.char.width * Global.config.scale;
-        //this.shift((Global.config.char.width - 1 ) * Global.config.scale / 2, 0, 0, 0);
         this.h = Global.config.char.height * Global.config.scale;
+        this.reel('CursorBlink', 1000, [[0, 0], [0, 1]]);
+        this.animate('CursorBlink', -1);
     }
-});*/
+});
