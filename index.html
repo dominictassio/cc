@@ -7,13 +7,20 @@
     <link rel="stylesheet" href="css/main.css">
     
     <script src="js/lib/crafty-min.js"></script>
-    <script src="js/lib/socket.io-1.0.4.js"></script>
+    <script src="js/lib/socket.io.min.js"></script>
     <script src="js/globals.js"></script>
     <script src="js/Game.js"></script>
     <script src="js/Components.js"></script>
     <script src="js/Scenes.js"></script>
     <script>
-        //var socket = io.connect('http://localhost:60603');
+        var socket = io.connect('http://localhost:10603');
+		
+		socket.on('lines', function(data) {
+			console.log(data);
+		});
+		
+		socket.emit('handshake', 'ayy lmao');
+		
         window.addEventListener('load', Game.start);
     </script>
 </head>
