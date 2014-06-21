@@ -6,7 +6,7 @@ Global.config = {
     "height": 19,
     "char": {
         "width": 6,
-        "height": 8,
+        "height": 9,
         "widths": [
           //    !  "  #  $  %  &  '  (  )  *  +  ,  -  .  /
             [0, 1, 4, 5, 5, 5, 5, 2, 4, 4, 4, 5, 1, 5, 1, 5],
@@ -174,4 +174,41 @@ Global.keys = {
     COMMA: 51,
     MINUS: 12,
     PERIOD: 52
+};
+
+Global.events = {
+    "char": function(char) {
+        socket.emit("char", char);
+    },
+    "key": function(key) {
+        socket.emit("key", Global.keys[key]);
+    },
+    "terminate": function() {
+        socket.emit("terminate", true);
+    },
+    "mouse_click": function(button) {
+        socket.emit("mouse_click", button);
+    },
+    "mouse_scroll": function(direction) {
+        socket.emit("mouse_scroll", direction);
+    },
+    "mouse_drag": function(button) {
+        socket.emit("mouse_drag", button);
+    }
+};
+
+Global.terminal = {
+    "write": function(str, clr, y) {
+        if (typeof clr === "number" && y === undefined) {
+            y = clr;
+            clr[0] = Global.colors.WHITE;
+            clr[1] = Global.colors.BLACK;
+        } else if (typeof clr === "string") {
+            clr[0] = clr;
+            clr[1] = Global.colors.BLACK;
+        }
+        for (var x = 0; x < str.length; x++) {
+            Crafty.e('ch_' + clr[0] + '_' + Global.config.char.getCharCoords(str[x])[0] + '_' + Global.config.char.getCharCoords(str[x])[1]).at(x, y).color(Global.config.colors[clr[1]]);
+        }
+    }
 };

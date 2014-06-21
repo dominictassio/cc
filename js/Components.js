@@ -1,15 +1,15 @@
 
 Crafty.load(["img/font.png", "img/cursor.png"], function() {
-    Crafty.sprite(8, "img/font.png", function() {
+    Crafty.sprite(8, 9, "img/font.png", function() {
         var sprites = {};
         for (var i = 0; i < 16; i++) {
             for (var y = 0; y < 6; y++) {
                 for (var x = 0; x < 16; x++) {
-                    sprites["spr_" + i.toString(16) + "_"+y + '_' + x] = [x, y + 2 + (16 * i)];
+                    sprites["spr_" + i.toString(16) + "_" + y + "_" + x] = [x, y + (6 * i)];
                 }
             }
         }
-        
+
         return sprites;
     }());
 
@@ -18,8 +18,6 @@ Crafty.load(["img/font.png", "img/cursor.png"], function() {
     });
 });
 
-Crafty.load
-
 Crafty.c('Grid', {
     init: function() {
         this.attr({
@@ -27,7 +25,6 @@ Crafty.c('Grid', {
             h: Global.config.char.height * Global.config.scale + (Global.config.scale)
         });
     },
-    
     at: function(x, y) {
         if (x === undefined && y === undefined) {
             return {
@@ -37,7 +34,7 @@ Crafty.c('Grid', {
         } else {
             this.attr({
                 x: x * Global.config.char.width * Global.config.scale,
-                y: y * Global.config.char.height * Global.config.scale + (y * Global.config.scale)
+                y: y * Global.config.char.height * Global.config.scale
             });
             return this;
         }
@@ -60,9 +57,13 @@ for (var i = 0; i < 16; i++) {
                     var x = this.x;
                     var y = this.y;
                     this.requires('2D, Canvas, Grid, Color, spr_' + this.i.toString(16) + '_' + y + '_' + x);
-                    this.crop(/*-parseInt((Global.config.char.width - 1 - w) / 2)*/0, 0, 6, 8);
+                    this.crop(/*-parseInt((Global.config.char.width - 1 - w) / 2)*/0, 0, 6, 9);
                     this.w = Global.config.char.width * Global.config.scale;
-                    this.h = Global.config.char.height * Global.config.scale;
+                    this.h = Global.config.char.height * Global.config.scale/* + (Global.config.scale)*/;
+                },
+                color: function(color) {
+                    this.color(Global.config.colors[color]);
+                    return this;
                 }
             });
         }

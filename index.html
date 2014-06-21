@@ -3,24 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>ccCloud</title>
-    
+
     <link rel="stylesheet" href="css/main.css">
-    
+
     <script src="js/lib/crafty-min.js"></script>
-    <script src="js/lib/socket.io.min.js"></script>
+    <script src="js/lib/socket.io-1.0.4.js"></script>
     <script src="js/globals.js"></script>
     <script src="js/Game.js"></script>
     <script src="js/Components.js"></script>
     <script src="js/Scenes.js"></script>
     <script>
-        var socket = io.connect('http://localhost:10603');
-		
-		socket.on('lines', function(data) {
-			console.log(data);
-		});
-		
-		socket.emit('handshake', 'ayy lmao');
-		
+        var socket = io.connect('http://localhost');
+
+        socket.on("vritualization", function(data) {
+            var cmd = data.split('|');
+            switch (cmd[1]) {
+                case "lines":
+
+                    break;
+                case "colorLines":
+
+                    break;
+            }
+        });
+
+        window.onkeyup = function(e) {
+            socket.emit("char", String.fromCharCode(e.keycode).toLowerCase());
+        };
+
         window.addEventListener('load', Game.start);
     </script>
 </head>
